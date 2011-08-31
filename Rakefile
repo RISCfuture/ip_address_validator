@@ -17,6 +17,7 @@ Jeweler::Tasks.new do |gem|
   gem.email = "git@timothymorgan.info"
   gem.homepage = "http://github.com/riscfuture/ip_address_validator"
   gem.authors = [ "Tim Morgan" ]
+  gem.files = %w( lib/**/* LICENSE README.textile ip_address_validator.gemspec )
 end
 Jeweler::RubygemsDotOrgTasks.new
 
@@ -26,7 +27,7 @@ YARD::Rake::YardocTask.new('doc') do |doc|
   doc.options << "--protected"
   doc.options << "-r" << "README.textile"
   doc.options << "-o" << "doc"
-  doc.options << "--title" << "ip_address_validator Documentation".inspect
+  doc.options << "--title" << "ip_address_validator Documentation"
   
   doc.files = [ 'lib/*.rb', 'README.textile' ]
 end
