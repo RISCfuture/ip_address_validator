@@ -1,7 +1,7 @@
 h1. ip_address_validator -- Simple IP validator for Rails 3
 
 | *Author* | Tim Morgan |
-| *Version* | 1.0 (Oct 30, 2010) |
+| *Version* | 1.0.1 (Mar 19, 2012) |
 | *License* | Released under the MIT license. |
 
 h2. About
