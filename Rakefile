@@ -17,17 +17,26 @@ Jeweler::Tasks.new do |gem|
   gem.email = "git@timothymorgan.info"
   gem.homepage = "http://github.com/riscfuture/ip_address_validator"
   gem.authors = [ "Tim Morgan" ]
-  gem.files = %w( lib/**/* LICENSE README.textile ip_address_validator.gemspec )
+  gem.files = %w( lib/**/* LICENSE README.md ip_address_validator.gemspec )
 end
 Jeweler::RubygemsDotOrgTasks.new
 
 require 'yard'
+
+# bring sexy back (sexy == tables)
+module YARD::Templates::Helpers::HtmlHelper
+  def html_markup_markdown(text)
+    markup_class(:markdown).new(text, :gh_blockcode, :fenced_code, :autolink, :tables, :no_intraemphasis).to_html
+  end
+end
+
 YARD::Rake::YardocTask.new('doc') do |doc|
-  doc.options << "-m" << "textile"
-  doc.options << "--protected"
-  doc.options << "-r" << "README.textile"
-  doc.options << "-o" << "doc"
-  doc.options << "--title" << "ip_address_validator Documentation"
-  
-  doc.files = [ 'lib/*.rb', 'README.textile' ]
+  doc.options << '-m' << 'markdown'
+  doc.options << '-M' << 'redcarpet'
+  doc.options << '--protected' << '--no-private'
+  doc.options << '-r' << 'README.md'
+  doc.options << '-o' << 'doc'
+  doc.options << '--title' << 'ip_address_validator Documentation'
+
+  doc.files = %w(lib/*.rb README.md)
 end
