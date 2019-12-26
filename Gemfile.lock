@@ -1,16 +1,16 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (6.0.0)
-      activesupport (= 6.0.0)
-    activesupport (6.0.0)
+    activemodel (6.0.2.1)
+      activesupport (= 6.0.2.1)
+    activesupport (6.0.2.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-      zeitwerk (~> 2.1, >= 2.1.8)
+      zeitwerk (~> 2.2)
     addressable (2.4.0)
-    builder (3.2.3)
+    builder (3.2.4)
     concurrent-ruby (1.1.5)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -24,8 +24,8 @@ GEM
       hashie (>= 3.4)
       mime-types (>= 1.16, < 3.0)
       oauth2 (~> 1.0)
-    hashie (3.6.0)
-    highline (2.0.2)
+    hashie (4.0.0)
+    highline (2.0.3)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     jeweler (2.3.9)
@@ -45,11 +45,11 @@ GEM
       activesupport (>= 3.0)
     mime-types (2.99.3)
     mini_portile2 (2.4.0)
-    minitest (5.12.2)
-    multi_json (1.13.1)
+    minitest (5.13.0)
+    multi_json (1.14.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
-    nokogiri (1.10.4)
+    nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
     oauth2 (1.4.2)
       faraday (>= 0.8, < 2.0)
@@ -58,16 +58,16 @@ GEM
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
     psych (3.1.0)
-    rack (2.0.7)
-    rake (13.0.0)
-    rdoc (6.2.0)
+    rack (2.0.8)
+    rake (13.0.1)
+    rdoc (6.2.1)
     redcarpet (3.5.0)
     semver2 (3.4.2)
     thread_safe (0.3.6)
-    tzinfo (1.2.5)
+    tzinfo (1.2.6)
       thread_safe (~> 0.1)
     yard (0.9.20)
-    zeitwerk (2.1.10)
+    zeitwerk (2.2.2)
 
 PLATFORMS
   ruby
@@ -79,4 +79,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   2.0.2
+   2.1.2
