@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.name = "ip_address_validator"
   s.version = "1.0.1"
 
+  s.required_ruby_version = '>= 2.5'
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tim Morgan"]
-  s.date = "2013-12-08"
   s.description = "A simple, localizable EachValidator for IPv4 and IPv6 address fields in ActiveRecord 3.0."
   s.email = "git@timothymorgan.info"
   s.extra_rdoc_files = [
