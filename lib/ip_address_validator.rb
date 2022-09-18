@@ -28,8 +28,8 @@ class IpAddressValidator < LocalizedEachValidator
       return false
     end
 
-    return false if ip.ipv4? and options[:ipv6_only]
-    return false if ip.ipv6? and options[:ipv4_only]
+    return false if ip.ipv4? && options[:ipv6_only]
+    return false if ip.ipv6? && options[:ipv4_only]
 
     return true
   end
