@@ -1,5 +1,7 @@
-require 'localized_each_validator'
-require 'ipaddr'
+# frozen_string_literal: true
+
+require "localized_each_validator"
+require "ipaddr"
 
 # Validates IPv4 and IPv6 addresses. Uses the `invalid_ip` error message key.
 #
