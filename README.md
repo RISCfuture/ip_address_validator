@@ -21,7 +21,7 @@ Installation
 Add the gem to your project's `Gemfile`:
 
 ```` ruby
-gem 'ip_address_validator'
+gem "ip_address_validator"
 ````
 
 Usage
@@ -32,7 +32,7 @@ This gem is an `EachValidator`, and thus is used with the `validates` method:
 ```` ruby
 class User < ActiveRecord::Base
   validates :last_login_ip,
-			ip_address: true
+            ip_address: true
 end
 ````
 
