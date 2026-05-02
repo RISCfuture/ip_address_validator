@@ -1,6 +1,10 @@
 ip_address_validator
 ====================
 
+[![CI](https://github.com/RISCfuture/ip_address_validator/actions/workflows/ruby.yml/badge.svg)](https://github.com/RISCfuture/ip_address_validator/actions/workflows/ruby.yml)
+[![Gem Version](https://img.shields.io/gem/v/ip_address_validator.svg)](https://rubygems.org/gems/ip_address_validator)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 **Simple IP validator for Rails 3+**
 
 |             |                                 |
