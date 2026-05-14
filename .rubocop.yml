@@ -9,5 +9,4 @@ inherit_mode:
     - Environments
 
 AllCops:
-  Exclude:
-    - "*.gemspec" # temporarily until we move off of juweiler
+  NewCops: enable

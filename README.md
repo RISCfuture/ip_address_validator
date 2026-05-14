@@ -1,52 +1,85 @@
-ip_address_validator
-====================
+# ip_address_validator
 
-[![CI](https://github.com/RISCfuture/ip_address_validator/actions/workflows/ruby.yml/badge.svg)](https://github.com/RISCfuture/ip_address_validator/actions/workflows/ruby.yml)
+[![CI](https://github.com/RISCfuture/ip_address_validator/actions/workflows/ci.yml/badge.svg)](https://github.com/RISCfuture/ip_address_validator/actions/workflows/ci.yml)
 [![Gem Version](https://img.shields.io/gem/v/ip_address_validator.svg)](https://rubygems.org/gems/ip_address_validator)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-**Simple IP validator for Rails 3+**
+A localizable `EachValidator` for IPv4 and IPv6 address fields, with optional
+restrictions on CIDR, loopback, private, and reserved ranges. Works with any
+class that uses `ActiveModel::Validations` (Rails models, plain Ruby objects
+that `include ActiveModel::Validations`, etc.).
 
-|             |                                 |
-|:------------|:--------------------------------|
-| **Author**  | Tim Morgan                      |
-| **Version** | 1.0.1 (Mar 19, 2012)            |
-| **License** | Released under the MIT license. |
+## Installation
 
-About
------
+```ruby
+gem "ip_address_validator", "~> 2.0"
+```
 
-This gem adds a very simple IP address format validator to be used with
-ActiveRecord models in Rails 3.0. It supports localized error messages.
+Requires Ruby 3.1 or newer and `activemodel >= 6.1`.
 
-Installation
-------------
+## Usage
 
-Add the gem to your project's `Gemfile`:
+```ruby
+class User
+  include ActiveModel::Validations
+  attr_accessor :last_login_ip
 
-```` ruby
-gem "ip_address_validator"
-````
-
-Usage
------
-
-This gem is an `EachValidator`, and thus is used with the `validates` method:
-
-```` ruby
-class User < ActiveRecord::Base
-  validates :last_login_ip,
-            ip_address: true
+  validates :last_login_ip, ip_address: true
 end
-````
+```
 
-The localization key is `invalid_ip`, and can be specified in the localized
-YAML file like so:
+### Options
 
-```` yaml
+| Option         | Default | Description                                                                                                |
+|:---------------|:-------:|:-----------------------------------------------------------------------------------------------------------|
+| `:ipv4_only`   | `false` | If `true`, IPv6 addresses are considered invalid.                                                          |
+| `:ipv6_only`   | `false` | If `true`, IPv4 addresses are considered invalid.                                                          |
+| `:allow_cidr`  | `false` | If `true`, CIDR notation (e.g. `10.0.0.0/24`) is accepted. Otherwise any value containing `/` is rejected. |
+| `:no_loopback` | `false` | If `true`, loopback addresses (`127.0.0.0/8`, `::1`) are rejected.                                         |
+| `:no_private`  | `false` | If `true`, RFC 1918 ranges and IPv6 unique local (`fc00::/7`) are rejected.                                |
+| `:no_reserved` | `false` | If `true`, link-local, multicast, broadcast, documentation, and other reserved blocks are rejected.        |
+| `:message`     | —       | Custom error message.                                                                                      |
+| `:allow_nil`   | `false` | If `true`, `nil` values are allowed.                                                                       |
+| `:allow_blank` | `false` | If `true`, blank values are allowed.                                                                       |
+
+### Examples
+
+```ruby
+# Only allow public, non-CIDR IPv4 addresses.
+validates :webhook_source_ip, ip_address: {
+  ipv4_only: true,
+  no_loopback: true,
+  no_private: true,
+  no_reserved: true
+}
+
+# Allow a CIDR block (e.g. for an IP allowlist field).
+validates :allowlist_entry, ip_address: { allow_cidr: true }
+
+# Custom message.
+validates :remote_ip, ip_address: { message: "must be a valid IP" }
+```
+
+### Localization
+
+The error key is `invalid_ip`. Define it under the usual ActiveModel
+errors hierarchy:
+
+```yaml
 en:
-  activerecord:
-	errors:
-	  messages:
-	    invalid_ip: IP address is invalid.
-````
+  activemodel:
+    errors:
+      messages:
+        invalid_ip: "is not a valid IP address"
+```
+
+## Development
+
+```sh
+bin/setup
+bundle exec rspec
+```
+
+## License
+
+Released under the MIT License. See `LICENSE`.
