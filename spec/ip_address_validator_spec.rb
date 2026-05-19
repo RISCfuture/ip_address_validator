@@ -6,6 +6,7 @@ module SpecSupport
   # A small ActiveModel-backed object we can validate against.
   class TestModel
     include ActiveModel::Validations
+
     attr_accessor :ip
   end
 end
@@ -14,7 +15,7 @@ RSpec.describe IpAddressValidator do
   # Build a fresh model class per example so calls to `validates` don't leak.
   def model_class(**opts)
     Class.new(SpecSupport::TestModel) do
-      validates :ip, ip_address: opts.empty? ? true : opts
+      validates :ip, ip_address: opts.empty? || opts
     end
   end
 
@@ -38,13 +39,13 @@ RSpec.describe IpAddressValidator do
 
     it "rejects malformed IPv4 addresses" do
       [
-        "999.999.999.999",
-        "1.2.3",
-        "1.2.3.4.5",
-        "abc.def.ghi.jkl",
-        "1.2.3.4 ",
-        "",
-        "not an ip"
+          "999.999.999.999",
+          "1.2.3",
+          "1.2.3.4.5",
+          "abc.def.ghi.jkl",
+          "1.2.3.4 ",
+          "",
+          "not an ip"
       ].each { |v| expect_invalid(v) }
     end
 
@@ -58,20 +59,20 @@ RSpec.describe IpAddressValidator do
   describe "IPv6" do
     it "accepts well-formed IPv6 addresses" do
       %w[
-        ::1
-        ::
-        fe80::1
-        2001:db8::1
-        2001:0db8:85a3:0000:0000:8a2e:0370:7334
-        ::ffff:192.0.2.128
+          ::1
+          ::
+          fe80::1
+          2001:db8::1
+          2001:0db8:85a3:0000:0000:8a2e:0370:7334
+          ::ffff:192.0.2.128
       ].each { |v| expect_valid(v) }
     end
 
     it "rejects malformed IPv6 addresses" do
       %w[
-        gggg::1
-        2001:db8:::1
-        12345::1
+          gggg::1
+          2001:db8:::1
+          12345::1
       ].each { |v| expect_invalid(v) }
       expect_invalid("not even close")
     end

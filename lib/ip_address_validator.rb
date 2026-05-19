@@ -39,15 +39,14 @@ class IpAddressValidator < LocalizedEachValidator
 
   # @private
   def valid?(_record, _attribute, value)
-    return false unless value.is_a?(String)
+    return false unless value.kind_of?(String)
     return false if !options[:allow_cidr] && value.include?("/")
 
-    ip =
-      begin
-        IPAddr.new(value)
-      rescue IPAddr::Error, ArgumentError
-        return false
-      end
+    begin
+      ip = IPAddr.new(value)
+    rescue ArgumentError
+      return false
+    end
 
     return false if ip.ipv4? && options[:ipv6_only]
     return false if ip.ipv6? && options[:ipv4_only]
@@ -77,30 +76,30 @@ class IpAddressValidator < LocalizedEachValidator
   def reserved_ip?(ip)
     return true if ip.link_local?
     return true if ip.respond_to?(:multicast?) ? ip.multicast? : false
-    return true if ip.to_s == "0.0.0.0" || ip.to_s == "::"
+    return true if ["0.0.0.0", "::"].include?(ip.to_s)
 
     if ip.ipv4?
       reserved_v4 = %w[
-        0.0.0.0/8
-        100.64.0.0/10
-        169.254.0.0/16
-        192.0.0.0/24
-        192.0.2.0/24
-        198.18.0.0/15
-        198.51.100.0/24
-        203.0.113.0/24
-        224.0.0.0/4
-        240.0.0.0/4
-        255.255.255.255/32
+          0.0.0.0/8
+          100.64.0.0/10
+          169.254.0.0/16
+          192.0.0.0/24
+          192.0.2.0/24
+          198.18.0.0/15
+          198.51.100.0/24
+          203.0.113.0/24
+          224.0.0.0/4
+          240.0.0.0/4
+          255.255.255.255/32
       ]
       reserved_v4.any? { |r| IPAddr.new(r).include?(ip) }
     elsif ip.ipv6?
       reserved_v6 = %w[
-        ::/128
-        ::1/128
-        ff00::/8
-        2001:db8::/32
-        100::/64
+          ::/128
+          ::1/128
+          ff00::/8
+          2001:db8::/32
+          100::/64
       ]
       reserved_v6.any? { |r| IPAddr.new(r).include?(ip) }
     else

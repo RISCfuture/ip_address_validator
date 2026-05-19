@@ -22,6 +22,7 @@ Requires Ruby 3.1 or newer and `activemodel >= 6.1`.
 ```ruby
 class User
   include ActiveModel::Validations
+
   attr_accessor :last_login_ip
 
   validates :last_login_ip, ip_address: true
@@ -47,17 +48,17 @@ end
 ```ruby
 # Only allow public, non-CIDR IPv4 addresses.
 validates :webhook_source_ip, ip_address: {
-  ipv4_only: true,
-  no_loopback: true,
-  no_private: true,
-  no_reserved: true
+    ipv4_only:   true,
+    no_loopback: true,
+    no_private:  true,
+    no_reserved: true
 }
 
 # Allow a CIDR block (e.g. for an IP allowlist field).
-validates :allowlist_entry, ip_address: { allow_cidr: true }
+validates :allowlist_entry, ip_address: {allow_cidr: true}
 
 # Custom message.
-validates :remote_ip, ip_address: { message: "must be a valid IP" }
+validates :remote_ip, ip_address: {message: "must be a valid IP"}
 ```
 
 ### Localization

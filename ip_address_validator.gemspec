@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.homepage    = "https://github.com/RISCfuture/ip_address_validator"
   spec.license     = "MIT"
 
-  spec.required_ruby_version = ">= 3.1"
+  spec.required_ruby_version = ">= 3.2"
 
   spec.metadata = {
     "source_code_uri"       => "https://github.com/RISCfuture/ip_address_validator",
@@ -43,5 +43,4 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_development_dependency "standard", ">= 1.0"
 end
