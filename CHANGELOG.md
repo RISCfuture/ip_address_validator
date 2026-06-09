@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [2.0.0] - 2026-05-14
 
 ### Breaking
+
 - Bumped minimum Ruby to **3.1**.
 - Bumped `activemodel` runtime dependency to **>= 6.1**. `activerecord` is no
   longer a (transitive) dependency; the validator only needs ActiveModel.
@@ -16,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - Non-`String` values are now explicitly rejected.
 
 ### Added
+
 - `:allow_cidr` option (default `false`) — opt back in to CIDR notation.
 - `:no_loopback` option — rejects `127.0.0.0/8` and `::1`.
 - `:no_private` option — rejects RFC 1918 ranges and IPv6 unique local
@@ -29,6 +31,7 @@ All notable changes to this project will be documented in this file.
   tests shipped with the gem.
 
 ### Changed
+
 - Replaced jeweler-generated gemspec with a hand-written one using
   `git ls-files` and modern `spec.metadata` (including
   `rubygems_mfa_required`).
@@ -38,6 +41,7 @@ All notable changes to this project will be documented in this file.
 - Added GitHub Actions matrix (Ruby 3.1–3.4 × activemodel 7.0–8.0).
 
 ### Removed
+
 - `jeweler`, `yard`, and `RedCloth`/`redcarpet` dev dependencies.
 - `.travis.yml`.
 - Stale `README.textile` references.
