@@ -40,6 +40,7 @@ GEM
       prism (~> 1.5)
     prism (1.9.0)
     rake (13.4.2)
+    redcarpet (3.6.1)
     rspec (3.13.2)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -57,6 +58,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uri (1.1.1)
+    yard (0.9.45)
 
 PLATFORMS
   arm64-darwin-22
@@ -68,7 +70,9 @@ PLATFORMS
 DEPENDENCIES
   ip_address_validator!
   rake (~> 13.0)
+  redcarpet
   rspec (~> 3.0)
+  yard
 
 BUNDLED WITH
   4.0.16
