@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.metadata = {
     "documentation_uri"     => "https://riscfuture.github.io/ip_address_validator/",
     "source_code_uri"       => "https://github.com/RISCfuture/ip_address_validator",
-    "changelog_uri"         => "https://github.com/RISCfuture/ip_address_validator/blob/master/CHANGELOG.md",
+    "changelog_uri"         => "https://github.com/RISCfuture/ip_address_validator/blob/main/CHANGELOG.md",
     "bug_tracker_uri"       => "https://github.com/RISCfuture/ip_address_validator/issues",
     "rubygems_mfa_required" => "true"
   }
